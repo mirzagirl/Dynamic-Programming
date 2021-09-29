@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int dp[1001][1001];
+int max(int a, int b) { return (a > b) ? a : b; }
+int knap1(int wt[],int v[],int W,int n){
+    
+    if(n==0||W==0)return 0;
+    if(dp[n][W]!=-1)return dp[n][W];
+    
+    if(wt[n-1]>W){ dp[n][W]=knap1(wt,v,W,n-1);return dp[n][W];}
+    else 
+    {dp[n][W]=max(v[n-1]+knap1(wt,v,W-wt[n-1],n-1),knap1(wt,v,W,n-1));return dp[n][W];}
+    
+}
+int main()
+{   memset(dp,-1,sizeof(dp));
+    int n,W;cin>>n>>W;int wt[n],v[n];
+    for(int i=0;i<n;i++)cin>>wt[i];
+    for(int i=0;i<n;i++)cin>>v[i];
+    cout<<knap1(wt,v,W,n);
+}
