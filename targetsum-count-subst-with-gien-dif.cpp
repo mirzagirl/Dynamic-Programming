@@ -1,4 +1,13 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//Back-end complete function Template for C++
+
 class Solution {
+ 
   public:
     int findTargetSumWays(vector<int>&A ,int target) {
        int s = 0;
@@ -26,3 +35,28 @@ class Solution {
     return dp[n][s];
     }
 };
+
+
+// { Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        
+        cin>>N;
+        vector<int>arr(N);
+        
+        for(int i=0 ; i<N ; i++){
+            cin>>arr[i];
+        }
+        int target;
+        cin >> target;
+
+        Solution ob;
+        cout<<ob.findTargetSumWays(arr,target);
+        cout<<"\n";
+    }
+    return 0;
+}  // } Driver Code Ends
