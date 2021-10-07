@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+//subsetsum right
 int max(int a, int b) { return (a > b) ? a : b; }
   int knap1(int wt[],int W,int n)
 {      
