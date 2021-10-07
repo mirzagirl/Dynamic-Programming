@@ -1,26 +1,48 @@
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
-bool dp[1001][1001];
-int max(int a, int b) { return (a > b) ? a : b; }
-int knap1(int wt[],int W,int n)
-{
-    for(int i=1;i<=n;i++)
-    for(int j=1;j<=W;j++)
-    if(wt[i-1]>j)
-        dp[i][j]=dp[i-1][j];
-    else 
-        dp[i][j]= dp[i-1][j-wt[i-1]]||dp[i-1][j];
-    return dp[n][W];
-}
-int main()
-{   
+class Solution{
     
-    int n,W=0;cin>>n;int wt[n];
-    for(int i=0;i<=n;i++)dp[i][0]=true;
-    for(int i=0;i<n;i++)cin>>wt[i],W+=wt[i];
-    
-    if(W%2!=0)cout<<"0";
-    
-    else{W=W/2;
-     cout<<knap1(wt,W,n);
-}}
+    public : 
+    bool  kp(int arr[],int sum,int n){
+        sum=sum/2;
+        bool dp[n+1][sum+1];
+        for(int i=0;i<n;i++)dp[i][0]=true;
+        for(int i=1;i<=n;i++)
+        for(int j=1;j<=sum;j++)
+           if(arr[i-1]>j)
+           dp[i][j]=dp[i-1][j];
+           else dp[i][j]=dp[i-1][j-arr[i-1]]||dp[i-1][j];
+       
+        if(dp[n][sum])return  true;
+        else return false;
+        
+    }
+public:
+    int equalPartition(int N, int arr[])
+    {
+        int sum=0;for(int i=0;i<N;i++)sum+=arr[i];
+        
+        if(sum%2==1)return 0;
+        else  { if(kp(arr,sum,N)) return 1;
+        else return 0;}
+    }
+};
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int N;
+        cin>>N;
+        int arr[N];
+        for(int i = 0;i < N;i++)
+            cin>>arr[i];
+        
+        Solution ob;
+        if(ob.equalPartition(N, arr))
+            cout<<"YES\n";
+        else
+            cout<<"NO\n";
+    }
+    return 0;
+} 
