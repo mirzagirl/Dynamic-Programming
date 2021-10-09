@@ -17,12 +17,10 @@ class Solution
        for(y=1;y<=m;y++)
         if(s1[x-1]==s2[y-1])
             dp[x][y]=1+dp[x-1][y-1];
-       else
+       elzse
             dp[x][y]=max(dp[x-1][y],dp[x][y-1]);   
          return dp[n][m];
    }
-
-
     public:
   
     int lcs(int x, int y, string s1, string s2)
